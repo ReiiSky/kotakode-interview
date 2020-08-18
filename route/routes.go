@@ -17,6 +17,7 @@ func SetupRouter() *gin.Engine {
 		{
 			v1g.POST("/user", v1.InsertUser)
 			v1g.POST("/activities", v1.InsertSingleActivity)
+			v1g.POST("/activities/bulk", v1.InsertBulkActivity)
 		}
 	}
 	return router
