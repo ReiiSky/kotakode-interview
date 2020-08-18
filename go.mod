@@ -12,7 +12,7 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/onsi/ginkgo v1.14.0 // indirect
-	github.com/rs/zerolog v1.19.0 // indirect
+	github.com/rs/zerolog v1.19.0
 	github.com/softbrewery/gojoi v0.0.0-20180423202125-34d5e1054ec7
 	go.mongodb.org/mongo-driver v1.4.0
 	golang.org/x/sys v0.0.0-20200803210538-64077c9b5642 // indirect

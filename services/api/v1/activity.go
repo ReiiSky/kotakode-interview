@@ -6,6 +6,7 @@ import (
 	"github.com/Kamva/mgm/v3"
 	"github.com/Satssuki/Go-Service-Boilerplate/models"
 	"github.com/Satssuki/Go-Service-Boilerplate/services/api/validation"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 // ActivityService struct that wrapper the user model api
@@ -52,4 +53,18 @@ func (activity *ActivityService) Insert() error {
 		err = currentActivity.GetCollection().Create(currentActivity)
 	}
 	return err
+}
+
+// Find implementation of function in base interface
+func (activity *ActivityServices) Find(query bson.M) (*ActivityServices, error) {
+	act := CreateSingleActivityService()
+	err := act.Activity.GetCollection().SimpleFind(&activity.Activities, query)
+	return activity, err
+}
+
+// FindByID implementation of function in base interface
+func (activity *ActivityService) FindByID(id string) (*ActivityService, error) {
+	act := CreateSingleActivityService()
+	err := act.Activity.GetCollection().FindByID(id, &activity.Activity)
+	return activity, err
 }
