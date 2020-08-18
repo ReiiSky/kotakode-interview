@@ -36,7 +36,7 @@ func (activity *ActivityServices) Insert() error {
 	} else {
 		listInterface := []interface{}{}
 		for _, y := range activity.Activities {
-			listInterface = append(listInterface, &y)
+			listInterface = append(listInterface, y)
 		}
 		_, Err := activity.Activities[0].GetCollection().InsertMany(mgm.Ctx(), listInterface)
 		err = Err

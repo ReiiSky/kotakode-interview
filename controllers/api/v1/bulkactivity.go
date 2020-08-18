@@ -16,7 +16,7 @@ func InsertBulkActivity(c *gin.Context) {
 
 	service := v1s.CreateBulkActivityService()
 	err := helpers.ReadByteAndParse(c.Request.Body, &service)
-
+	
 	if err == nil {
 		err := service.Insert()
 		if err == nil {
