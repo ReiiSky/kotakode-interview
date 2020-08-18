@@ -7,6 +7,7 @@ import (
 	"github.com/Satssuki/Go-Service-Boilerplate/models"
 	"github.com/Satssuki/Go-Service-Boilerplate/services/api/validation"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // ActivityService struct that wrapper the user model api
@@ -67,4 +68,19 @@ func (activity *ActivityService) FindByID(id string) (*ActivityService, error) {
 	act := CreateSingleActivityService()
 	err := act.Activity.GetCollection().FindByID(id, &activity.Activity)
 	return activity, err
+}
+
+// DeleteOne implementation of function in base interface
+func (activity *ActivityService) DeleteOne(id string) int {
+	activity.Activity.Group = "nil"
+	hex, err := primitive.ObjectIDFromHex(id)
+	if err == nil {
+		result, err := activity.Activity.GetCollection().DeleteOne(mgm.Ctx(), bson.M{
+			"_id": hex,
+		})
+		if err == nil {
+			return int(result.DeletedCount)
+		}
+	}
+	return 0
 }

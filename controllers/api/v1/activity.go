@@ -29,3 +29,20 @@ func InsertSingleActivity(c *gin.Context) {
 		"message": fmt.Sprintf("error: %v", err),
 	})
 }
+
+// DeleteSingleActivity sample controller to perform insert user function
+func DeleteSingleActivity(c *gin.Context) {
+	defer c.Request.Body.Close()
+
+	service := v1s.CreateSingleActivityService()
+
+	result := service.DeleteOne(c.Param("id"))
+	if result > 0 {
+		c.String(200, "activity deleted")
+		return
+	}
+
+	api.JSONResponse(http.StatusBadRequest, c.Writer, gin.H{
+		"message": "not found activity with id: " + c.Param("id"),
+	})
+}
