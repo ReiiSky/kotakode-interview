@@ -23,6 +23,7 @@ func SetupRouter() *gin.Engine {
 			v1g.GET("/activities/detail/:id", v1.ActivityDetail)
 			v1g.GET("/activities/group/:groupName", v1.FindByGroup)
 			v1g.GET("/activities/priority/:priorityNumber", v1.FindByPriority)
+			v1g.GET("/activities/group", v1.GetGroup)
 
 			v1g.DELETE("/activities/:id", v1.DeleteSingleActivity)
 		}

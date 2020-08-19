@@ -6,6 +6,7 @@ import (
 
 	"github.com/Satssuki/Go-Service-Boilerplate/helpers"
 	"github.com/Satssuki/Go-Service-Boilerplate/helpers/api"
+	v1 "github.com/Satssuki/Go-Service-Boilerplate/services/api/v1"
 	v1s "github.com/Satssuki/Go-Service-Boilerplate/services/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -45,4 +46,15 @@ func DeleteSingleActivity(c *gin.Context) {
 	api.JSONResponse(http.StatusBadRequest, c.Writer, gin.H{
 		"message": "not found activity with id: " + c.Param("id"),
 	})
+	v1.CreateSingleActivityService()
+}
+
+// GetGroup sample controller to perform insert user function
+func GetGroup(c *gin.Context) {
+	act := v1.CreateSingleActivityService()
+	value := act.GetGroup()
+	api.JSONResponse(http.StatusOK, c.Writer, gin.H{
+		"list": value,
+	})
+
 }

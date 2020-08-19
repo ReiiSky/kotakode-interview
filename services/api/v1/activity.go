@@ -84,3 +84,14 @@ func (activity *ActivityService) DeleteOne(id string) int {
 	}
 	return 0
 }
+
+// GetGroup implementation of function in base interface
+func (activity *ActivityService) GetGroup() []string {
+	act := CreateSingleActivityService()
+	x, _ := act.Activity.GetCollection().Distinct(mgm.Ctx(), "group", bson.M{})
+	result := []string{}
+	for _, y := range x {
+		result = append(result, y.(string))
+	}
+	return result
+}
